@@ -14,7 +14,7 @@
                         <table class="table table-hover">
                             @foreach ($roles as $role)
                                 <tr>
-                                    <td>{{ $role->nombre }}</td>
+                                    <td><a href="{{ route('roles.show', $role ) }}">{{ $role->nombre }}</a></td>
                                 </tr>
                             @endforeach
                         </table>
