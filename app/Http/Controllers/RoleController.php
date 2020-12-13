@@ -16,14 +16,14 @@ class RoleController extends Controller
     public function index()
     {
     	#llamada a los registros de roles usando Eloquent
-    	$roles = Role::all(); #select * from roles
+    	$roles = Role::orderBy('nombre','ASC')->get(); #select * from roles order by nombre
 
     	return view('roles.index', compact('roles'));
     }
 
     public function show(Role $role)
     {
-        return view('roles.show', compact('role'));
+        return view('roles.show', compact('role')); #select * from roles where id = ?
     }
 
     public function create()
@@ -37,6 +37,7 @@ class RoleController extends Controller
     		'nombre' => 'required|string|min:4|unique:roles',
     	]);
 
+        #insert into roles values(null, ?)
     	$rol = new Role;
     	$rol->nombre = $request->nombre;
     	$rol->save();
@@ -46,7 +47,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+        return view('roles.edit', compact('role')); #select * from roles where id = ?
     }
 
     public function update(Request $request, Role $role)
@@ -56,6 +57,7 @@ class RoleController extends Controller
             'nombre' => 'required|string|min:4',
         ]);
 
+        #update roles set nombre = ?
         $rol = Role::find($role->id);
         $rol->nombre = $request->nombre;
         $rol->save();
