@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
 
@@ -28,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all(); #select * from roles
+        $roles = Role::select('id','nombre')->orderBy('nombre','ASC');
+        #select id,nombre from roles order by nombre;
         return view('users.create', compact('roles'));
     }
 
@@ -40,7 +42,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        #return $request;
+        $this->validate($request, [
+            'name' => 'required|string|min:4',
+            'email' => 'required|email|min:4|unique:users',
+            'role' => 'required|integer',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect('/users')->with('success','El usuario se ha registrado correctamente');
     }
 
     /**
@@ -49,9 +66,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -60,9 +77,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::select('id','nombre')->orderBY('nombre','ASC')->get();
+        //select id,nombre from users order by nombre;
+        return view('users.edit', compact('user','roles'));
     }
 
     /**
@@ -72,9 +91,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|min:4',
+            'email' => 'required|email|min:4',
+            'role' => 'required|integer',
+        ]);
+
+        $user = User::find($user->id); #select * from users where id = id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role;
+        $user->save();
+
+        return redirect('/users/' . $user->id)->with('success','El usuario se ha modificado correctamente');
     }
 
     /**

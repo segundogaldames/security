@@ -62,6 +62,6 @@ class RoleController extends Controller
         $rol->nombre = $request->nombre;
         $rol->save();
 
-        return redirect('/roles')->with('success','El rol se ha modificado correctamente');
+        return redirect('/roles/' . $role->id)->with('success','El rol se ha modificado correctamente');
     }
 }
