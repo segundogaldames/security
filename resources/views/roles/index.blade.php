@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Roles') }} <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm">Crear Rol</a></div>
+                <div class="card-header">{{ __('Roles') }} | <a href="{{ route('roles.create') }}" class="btn-light">Crear Rol</a></div>
 
                 <div class="card-body">
 

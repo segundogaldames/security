@@ -23,6 +23,16 @@
                             <td>{{ $user->role->nombre }}</td>
                         </tr>
                         <tr>
+                            <th>Estado:</th>
+                            <td>
+                                @if ($user->active==1)
+                                    Activo
+                                @else
+                                    Inactivo
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Creado:</th>
                             <td>{{ $user->created_at->format('d-m-Y H:i:s') }}</td>
                         </tr>

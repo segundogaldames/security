@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::select('id','nombre')->orderBy('nombre','ASC');
+        $roles = Role::select('id','nombre')->orderBy('nombre','ASC')->get();
         #select id,nombre from roles order by nombre;
         return view('users.create', compact('roles'));
     }
@@ -54,6 +54,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role_id = $request->role;
+        $user->active = 1; #1 => activo y 2 => inactivo
         $user->password = Hash::make($request->password);
         $user->save();
 
@@ -97,12 +98,14 @@ class UserController extends Controller
             'name' => 'required|string|min:4',
             'email' => 'required|email|min:4',
             'role' => 'required|integer',
+            'active' => 'required|integer',
         ]);
 
         $user = User::find($user->id); #select * from users where id = id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role_id = $request->role;
+        $user->active = $request->active;
         $user->save();
 
         return redirect('/users/' . $user->id)->with('success','El usuario se ha modificado correctamente');

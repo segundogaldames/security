@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Usuarios') }} <a href="{{ route('users.create') }}" class="btn btn-success btn-sm">Crear Usuario</a></div>
+                <div class="card-header">{{ __('Usuarios') }} | <a href="{{ route('users.create') }}" class="btn-light">Crear Usuario</a></div>
 
                 <div class="card-body">
 
@@ -16,12 +16,20 @@
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Rol</th>
+                                <th>Activo</th>
                             </tr>
                             @foreach ($users as $user)
                                 <tr>
                                     <td><a href="{{ route('users.show', $user ) }}">{{ $user->name }}</a></td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->nombre }}</td>
+                                    <td>
+                                        @if ($user->active==1)
+                                            Si
+                                        @else
+                                            No
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
