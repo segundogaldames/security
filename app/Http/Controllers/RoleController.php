@@ -23,7 +23,8 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        return view('roles.show', compact('role')); #select * from roles where id = ?
+        return view('roles.show', compact('role'));
+        #select * from roles inner join users on roles.id = users.role_id where id = ?
     }
 
     public function create()

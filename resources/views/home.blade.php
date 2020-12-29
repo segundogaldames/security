@@ -3,19 +3,44 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-header">{{ __('Comunas') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                            Comunas
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">Regiones</a>
+                    </div>
                 </div>
+
+                <div class="card-header">{{ __('Productos') }}</div>
+
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                            Categorías
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">Imágenes</a>
+                         <a href="#" class="list-group-item list-group-item-action">Productos</a>
+                    </div>
+                </div>
+
+                <div class="card-header">{{ __('Usuarios') }}</div>
+
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action" aria-current="true">
+                            Usuarios
+                        </a>
+                        <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action">Roles</a>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

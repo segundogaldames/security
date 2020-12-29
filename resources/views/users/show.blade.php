@@ -43,7 +43,8 @@
                     </table>
                     <p>
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-link">Editar</a>
-                        <a href="{{ route('users.index') }}" class="btn btn-link">Volver</a>
+                        <a href="{{ route('roles.index') }}" class="btn btn-link">Roles</a>
+                        <a href="{{ route('users.index') }}" class="btn btn-link">Usuarios</a>
                     </p>
                 </div>
             </div>
