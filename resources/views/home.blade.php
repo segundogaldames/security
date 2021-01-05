@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','Usuarios')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +13,7 @@
                         <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                             Comunas
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action">Regiones</a>
+                        <a href="{{ route('regions.index') }}" class="list-group-item list-group-item-action">Regiones</a>
                     </div>
                 </div>
 

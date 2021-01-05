@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','Usuarios')
 @section('content')
 <div class="container">
     @include('partials._messages')
