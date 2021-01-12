@@ -45,6 +45,7 @@
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-link">Editar</a>
                         <a href="{{ route('roles.index') }}" class="btn btn-link">Roles</a>
                         <a href="{{ route('users.index') }}" class="btn btn-link">Usuarios</a>
+                        <a href="{{ route('people.addPerson', $user) }}" class="btn btn-primary btn-sm">Agregar Datos Personales</a>
                     </p>
                 </div>
             </div>
