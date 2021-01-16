@@ -33,6 +33,39 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>Teléfono:</th>
+                            <td>
+                                @if (!$user->person)
+                                    No registrado
+                                @else
+                                    {{ $user->person->telefono }}
+                                @endif
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Dirección:</th>
+                            <td>
+                                @if (!$user->person)
+                                    No registrada
+                                @else
+                                    {{ $user->person->direccion }}
+                                @endif
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Comuna:</th>
+                            <td>
+                                @if (!$user->person)
+                                    No registrada
+                                @else
+                                    {{ $user->person->comuna->nombre }}
+                                @endif
+
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Creado:</th>
                             <td>{{ $user->created_at->format('d-m-Y H:i:s') }}</td>
                         </tr>
@@ -45,7 +78,18 @@
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-link">Editar</a>
                         <a href="{{ route('roles.index') }}" class="btn btn-link">Roles</a>
                         <a href="{{ route('users.index') }}" class="btn btn-link">Usuarios</a>
-                        <a href="{{ route('people.addPerson', $user) }}" class="btn btn-primary btn-sm">Agregar Datos Personales</a>
+                        @if (!$user->person)
+                            <a href="{{ route('people.addPerson', $user) }}" class="btn btn-primary btn-sm">Agregar Datos Personales</a>
+                        @else
+                            <a href="{{ route('people.edit', $user->person->id) }}" class="btn btn-primary btn-sm">Modificar Datos Personales</a>
+                            <form method="POST" action="{{ route('people.destroy', $user->person) }}">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-warning">Eliminar</button>
+                            </form>
+                        @endif
+
                     </p>
                 </div>
             </div>
