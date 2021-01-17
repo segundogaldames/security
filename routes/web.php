@@ -30,6 +30,8 @@ Route::resource('users','UserController');
 Route::resource('regions','RegionController');
 Route::resource('comunas','ComunaController');
 Route::resource('people','PersonController');
+Route::resource('categories','CategoryController');
+Route::resource('products','ProductController');
 
 /*
 http es un protocolo de peticiones y respuestas en html

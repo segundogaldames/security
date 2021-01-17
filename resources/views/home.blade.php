@@ -21,11 +21,11 @@
 
                 <div class="card-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <a href="{{ route('categories.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                             Categorías
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">Imágenes</a>
-                         <a href="#" class="list-group-item list-group-item-action">Productos</a>
+                         <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action">Productos</a>
                     </div>
                 </div>
 
