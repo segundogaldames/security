@@ -43,7 +43,24 @@
                     <p>
                         <a href="{{ route('products.edit', $product) }}" class="btn btn-link">Editar</a>
                         <a href="{{ route('products.index') }}" class="btn btn-link">Volver</a>
+                        <a href="{{ route('images.addImage', $product) }}" class="btn btn-primary btn-sm">Agregar Imagen</a>
                     </p>
+
+                </div>
+            </div>
+            <!--Lista de imagenes por producto-->
+            <div class="card">
+                <div class="card-header">{{ __('Imágenes de ') }} {{ $product->nombre }}</div>
+
+                <div class="card-body">
+                    @if (isset($product->images) && @count($product->images))
+                        @foreach ($product->images as $image)
+                            <a href="{{ route('images.show', $image) }}"><img src="{{ asset('img_products/' . $image->imagen) }}"></a>
+                        @endforeach
+
+                    @else
+                        <p class="text-info">No hay imágenes asociadas</p>
+                    @endif
 
                 </div>
             </div>

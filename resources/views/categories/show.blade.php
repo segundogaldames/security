@@ -31,6 +31,30 @@
 
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">{{ __('Productos de ') }} {{ $category->nombre }}</div>
+
+                <div class="card-body">
+
+                    @if (isset($category->products) && @count($category->products))
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio $</th>
+                            </tr>
+                            @foreach ($category->products as $product)
+                                <tr>
+                                    <td><a href="{{ route('products.show', $product ) }}">{{ $product->nombre }}</a></td>
+                                    <td>{{ $product->precio }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @else
+                        <p class="text-info">No hay productos asociados</p>
+                    @endif
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

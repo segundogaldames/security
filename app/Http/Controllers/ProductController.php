@@ -118,7 +118,7 @@ class ProductController extends Controller
             }
         }
 
-        $product = new Product;
+        $product = Product::find($product->id);
         $product->sku = $request->sku;
         $product->nombre = $request->nombre;
         $product->precio = $request->precio;

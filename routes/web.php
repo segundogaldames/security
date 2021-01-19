@@ -24,6 +24,8 @@ Route::get('/comunas/addComuna/{region}','ComunaController@addComuna')->name('co
 Route::post('/comunas/setComuna/{region}','ComunaController@setComuna')->name('comunas.setComuna');
 Route::get('/people/addPerson/{user}','PersonController@addPerson')->name('people.addPerson');
 Route::post('/people/setPerson/{user}','PersonController@setPerson')->name('people.setPerson');
+Route::get('/images/addImagen/{product}','ImageController@addImage')->name('images.addImage');
+Route::post('/images/setImage/{product}','ImageController@setImage')->name('images.setImage');
 
 Route::resource('roles','RoleController');
 Route::resource('users','UserController');
@@ -32,6 +34,7 @@ Route::resource('comunas','ComunaController');
 Route::resource('people','PersonController');
 Route::resource('categories','CategoryController');
 Route::resource('products','ProductController');
+Route::resource('images','ImageController');
 
 /*
 http es un protocolo de peticiones y respuestas en html
