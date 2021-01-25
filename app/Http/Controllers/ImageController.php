@@ -126,11 +126,10 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
+        #return $request;
         $this->validate($request, [
             'titulo' => 'required|string|min:4',
-            'imagen' => 'image',
             'active' => 'required|integer',
-            'principal' => 'required|integer',
             'product' => 'required|integer',
         ]);
 
@@ -140,29 +139,57 @@ class ImageController extends Controller
             ]);
         }
 
-        
-        $file = $request->file('imagen');
-        $nom_image = $file->getClientOriginalName();
+        if ($request->file('imagen')){
+            $this->validate($request, [
+                'imagen' => 'image',
+            ]);
 
-        $file->move(public_path('img_products'), $nom_image);
+            $file = $request->file('imagen');
+            $nom_image = $file->getClientOriginalName();
 
-
-        $image = Image::where('product_id', $product->id)->where('principal', 1)->first();
-
-        if($image){
-            return redirect('/products/' . $product->id)->with('danger','Ya existe una imagen principal para este producto.. Intenta con otra o modifica la imagen principal');
+            $file->move(public_path('img_products'), $nom_image);   
+        }else{
+            $nom_image = $image->imagen;
         }
+        
 
         $img = Image::find($image->id);
         $img->titulo = $request->titulo;
         $img->imagen = $nom_image;
         $img->descripcion = $request->descripcion;
         $img->active = $request->active;
-        $img->principal = $principal;
-        $img->product_id = $product->id;
+        $img->product_id = $request->product;
         $img->save();
 
-        return redirect('/products/' . $product->id)->with('success','La imagen se ha modificado correctamente');
+        return redirect('/images/' . $image->id)->with('success','La imagen se ha modificado correctamente');
+    }
+
+    #metodos para cambiar relevancia de una imagen
+    public function changePrincipal(Image $image)
+    {
+        return view('images.changePrincipal', compact('image'));
+    }
+
+    public function modifyPrincipal(Request $request, Image $image)
+    {
+        #eturn $request;
+        $this->validate($request, [
+            'principal' => 'required|integer',
+        ]);
+
+        if($request->principal == 1){
+            $principal = Image::where('product_id', $image->product_id)->where('principal', 1)->first();
+
+            if($principal){
+                return redirect('/images/' . $image->id)->with('danger','Ya existe una imagen principal para este producto... Debe cambiar este atributo en la imagen principal');
+            }
+        }
+
+        $change = Image::find($image->id);
+        $change->principal = $request->principal;
+        $change->save();
+
+        return redirect('/images/' . $image->id)->with('success','La relevancia se ha modificado correctamente');
     }
 
     /**

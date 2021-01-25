@@ -26,6 +26,8 @@ Route::get('/people/addPerson/{user}','PersonController@addPerson')->name('peopl
 Route::post('/people/setPerson/{user}','PersonController@setPerson')->name('people.setPerson');
 Route::get('/images/addImagen/{product}','ImageController@addImage')->name('images.addImage');
 Route::post('/images/setImage/{product}','ImageController@setImage')->name('images.setImage');
+Route::get('/images/changePrincipal/{image}','ImageController@changePrincipal')->name('images.changePrincipal');
+Route::put('/images/modifyPrincipal/{image}','ImageController@modifyPrincipal')->name('images.modifyPrincipal');
 
 Route::resource('roles','RoleController');
 Route::resource('users','UserController');

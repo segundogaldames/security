@@ -55,7 +55,7 @@
                 <div class="card-body">
                     @if (isset($product->images) && @count($product->images))
                         @foreach ($product->images as $image)
-                            <a href="{{ route('images.show', $image) }}"><img src="{{ asset('img_products/' . $image->imagen) }}"></a>
+                            <a href="{{ route('images.show', $image) }}"><img src="{{ asset('img_products/' . $image->imagen) }}" title="Imagen @if ($image->principal==1) Principal @else Secundaria @endif"></a>
                         @endforeach
 
                     @else

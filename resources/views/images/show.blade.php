@@ -59,6 +59,11 @@
                     <p>
                         <a href="{{ route('images.edit', $image) }}" class="btn btn-link">Editar</a>
                         <a href="{{ route('products.show', $image->product_id) }}" class="btn btn-link">Volver</a>
+                        <a href="{{ route('images.changePrincipal', $image) }}" class="btn btn-primary btn-sm">Cambiar @if ($image->principal==1) a Secundaria @else a Principal
+                        @endif</a>
+                        @if ($image->principal==2) 
+                            <span class="alert alert-warning">Verifica que no haya otra imagen principal</span>
+                        @endif
                     </p>
 
                 </div>
