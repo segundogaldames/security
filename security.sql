@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.32, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: security
 -- ------------------------------------------------------
--- Server version	5.7.32-0ubuntu0.18.04.1
+-- Server version	5.7.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -96,6 +96,37 @@ LOCK TABLES `failed_jobs` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `images` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `active` int(11) NOT NULL,
+  `principal` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `images`
+--
+
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` VALUES (1,'Imagen 1','pantalon 3.jpeg','Imagen 1',2,1,1,'2021-01-19 00:45:51','2021-01-23 23:17:14'),(2,'Imagen 2','pantalon2.jpeg','Otra vista',1,2,1,'2021-01-19 00:47:16','2021-01-23 23:16:59'),(3,'Imagen 3','pantalon1.jpeg',NULL,1,2,1,'2021-01-19 00:48:11','2021-01-19 00:48:11');
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -107,7 +138,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +147,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2020_12_05_204001_create_roles_table',2),(5,'2020_12_19_203500_add_active_users_table',3),(6,'2021_01_04_215436_create_regions_table',4),(7,'2021_01_04_223647_create_comunas_table',5),(8,'2021_01_09_210109_create_people_table',6),(9,'2021_01_16_192757_create_categories_table',7),(10,'2021_01_16_201535_create_products_table',8);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2020_12_05_204001_create_roles_table',2),(5,'2020_12_19_203500_add_active_users_table',3),(6,'2021_01_04_215436_create_regions_table',4),(7,'2021_01_04_223647_create_comunas_table',5),(8,'2021_01_09_210109_create_people_table',6),(9,'2021_01_16_192757_create_categories_table',7),(10,'2021_01_16_201535_create_products_table',8),(11,'2021_01_18_202920_create_images_table',9);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +221,7 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +230,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'P0001','Pantalon de vestir',0,'Pantalon de vestir de gabardina',1,'2021-01-17 00:07:27','2021-01-17 00:07:27'),(2,'P0001','Pantalon de vestir',12500,'Pantalon de vestir de gabardina',1,'2021-01-17 00:14:02','2021-01-17 00:14:02'),(3,'P0001','Pantalon de vestir',0,'Pantalon de vestir de gabardina',1,'2021-01-17 00:14:44','2021-01-17 00:14:44');
+INSERT INTO `products` VALUES (1,'P0001','Pantalon de vestir',19500,'Pantalon de gabardina',1,'2021-01-18 23:12:57','2021-01-18 23:13:10');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +328,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-18 17:16:50
+-- Dump completed on 2021-01-25 19:45:23
