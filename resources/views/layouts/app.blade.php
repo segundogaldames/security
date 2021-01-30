@@ -27,6 +27,10 @@
             -webkit-border-radius: 7px 7px 7px 7px;
             border: 1px solid #1CB53A ;
             }
+        .precio{
+            font-weight: bold;
+            font-size: 22px;
+        }
     </style>
 </head>
 <body>

@@ -61,9 +61,14 @@
                         <a href="{{ route('products.show', $image->product_id) }}" class="btn btn-link">Volver</a>
                         <a href="{{ route('images.changePrincipal', $image) }}" class="btn btn-primary btn-sm">Cambiar @if ($image->principal==1) a Secundaria @else a Principal
                         @endif</a>
-                        @if ($image->principal==2) 
+                        @if ($image->principal==2)
                             <span class="alert alert-warning">Verifica que no haya otra imagen principal</span>
                         @endif
+                        <form method="POST" action="{{ route('images.destroy', $image) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </p>
 
                 </div>

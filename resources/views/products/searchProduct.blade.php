@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ __('Productos') }} | <a href="{{ route('products.create') }}" class="btn-light">Crear Producto</a>
+                            <a href="{{ route('products.index') }}" class="btn-light">Productos</a>
                         </div>
                         <div class="col-md-6">
                             <form method="POST" action="{{ route('products.searchProduct') }}" class="text-md-right">
@@ -26,26 +26,22 @@
                 </div>
 
                 <div class="card-body">
-
-                    @if (isset($products) && @count($products))
-                        <table class="table table-hover">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>SKU</th>
                                 <th>Categoría</th>
                             </tr>
-                            @foreach ($products as $product)
-                                <tr>
-                                    <td><a href="{{ route('products.show', $product ) }}">{{ $product->nombre }}</a></td>
-                                    <td>{{ $product->sku }}</td>
-                                    <td><a href="{{ route('categories.show', $product->category_id) }}">{{ $product->category->nombre }}</a></td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    @else
-                        <p class="text-info">No hay productos registrados</p>
-                    @endif
-
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="{{ route('products.show', $product ) }}">{{ $product->nombre }}</a></td>
+                                <td>{{ $product->sku }}</td>
+                                <td><a href="{{ route('categories.show', $product->category_id) }}">{{ $product->category->nombre }}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

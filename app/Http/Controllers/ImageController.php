@@ -17,8 +17,9 @@ class ImageController extends Controller
     {
         //lista de imagenes principales de productos
         $images = Image::with('product')->where('active', 1)->where('principal', 1)->get();
+        $prueba = 'prueba'
 
-        return view('images.index', compact('images'));
+        return view('images.index', compact('prueba'));
     }
 
     /**
@@ -147,11 +148,11 @@ class ImageController extends Controller
             $file = $request->file('imagen');
             $nom_image = $file->getClientOriginalName();
 
-            $file->move(public_path('img_products'), $nom_image);   
+            $file->move(public_path('img_products'), $nom_image);
         }else{
             $nom_image = $image->imagen;
         }
-        
+
 
         $img = Image::find($image->id);
         $img->titulo = $request->titulo;
@@ -200,6 +201,8 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image->delete();
+
+        return redirect('/products/' . $image->product_id)->with('success','La imagen se ha eliminado correctamente');
     }
 }

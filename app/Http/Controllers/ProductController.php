@@ -139,4 +139,22 @@ class ProductController extends Controller
     {
         //
     }
+
+    #metodo para buscar producto por sku
+    public function searchProduct(Request $request)
+    {
+        #return $request;
+        $this->validate($request, [
+            'sku' => 'required|string|min:4',
+        ]);
+
+        $product = Product::with('category')->where('sku', $request->sku)->first();
+
+        if (!isset($product)) {
+            return redirect('/products')->with('danger','No se encontró un producto con el SKU enviado');
+        }
+
+        return view('products.searchProduct', compact('product'));
+    }
+
 }

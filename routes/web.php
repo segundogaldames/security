@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Image;
+use App\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$images = Image::with('product')->where('active', 1)->where('principal', 1)->get();
+	$categories = Category::select('id','nombre')->orderBy('nombre','ASC')->get();
+
+    return view('welcome', compact('images','categories'));
 });
 
 Auth::routes();
@@ -45,3 +50,7 @@ Verbos: GET => carga informacion desde el servidor en el navegador
 		PUT => actualizar datos en el servidor
 		DELETE => eliminar recursos en el servidor
 */
+
+#rutas de busquedas
+Route::post('/products/searchProduct','ProductController@searchProduct')->name('products.searchProduct');
+Route::get('/products/getProduct/{product}','ProductController@getProduct')->name('products.getProduct');
