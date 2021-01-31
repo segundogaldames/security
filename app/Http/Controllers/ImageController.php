@@ -17,7 +17,6 @@ class ImageController extends Controller
     {
         //lista de imagenes principales de productos
         $images = Image::with('product')->where('active', 1)->where('principal', 1)->get();
-        $prueba = 'prueba'
 
         return view('images.index', compact('prueba'));
     }

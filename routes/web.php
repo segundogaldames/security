@@ -42,6 +42,7 @@ Route::resource('people','PersonController');
 Route::resource('categories','CategoryController');
 Route::resource('products','ProductController');
 Route::resource('images','ImageController');
+Route::resource('shoppingCarts','ShoppingCartController');
 
 /*
 http es un protocolo de peticiones y respuestas en html
@@ -54,3 +55,4 @@ Verbos: GET => carga informacion desde el servidor en el navegador
 #rutas de busquedas
 Route::post('/products/searchProduct','ProductController@searchProduct')->name('products.searchProduct');
 Route::get('/products/getProduct/{product}','ProductController@getProduct')->name('products.getProduct');
+Route::post('/shoppingCarts/addShopping/{product}','ShoppingCartController@addShopping')->name('shoppingCarts.addShopping');

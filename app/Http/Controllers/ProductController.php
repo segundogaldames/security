@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use App\Image;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -77,6 +78,12 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return view('products.show', compact('product'));
+    }
+
+    public function getProduct(Product $product)
+    {
+        $images = Image::select('imagen')->where('product_id', $product->id)->where('active',1)->get();
+        return view('products.getProduct', compact('product','images'));
     }
 
     /**
